@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Box ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
+  <!-- Background -->
+  <div class="bg">
+    <canvas id="particles"></canvas>
+    <div class="bg-gradient"></div>
+  </div>
+
+  <!-- Music toggle -->
+  <button id="musicBtn" aria-label="Toggle music" title="Music">🎵</button>
+  <audio id="bgMusic" loop preload="metadata">
+    <source src="audio/music.mp3" type="audio/mpeg">
+  </audio>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <span class="label">For My Love</span>
+        <h1>Memory Box</h1>
+        <p>Every memory begins with you.<br>Every smile becomes a beautiful story.</p>
+        <button id="openBox" class="btn primary">❤️ Open Memory Box</button>
+      </div>
+      <div class="scroll-hint">
+        <span>Scroll to discover</span>
+        <div class="mouse"><span></span></div>
+      </div>
+    </section>
+
+    <!-- GIFT BOX -->
+    <section class="scene" id="scene">
+      <div class="gift-wrap">
+        <div id="memoryBox" class="gift">
+          <div class="gift-shadow"></div>
+          <div class="gift-lid">
+            <div class="bow">
+              <div class="bow-l"></div>
+              <div class="bow-r"></div>
+              <div class="bow-c"></div>
+            </div>
+          </div>
+          <div class="gift-body">
+            <div class="ribbon-v"></div>
+            <div class="ribbon-h"></div>
+          </div>
+          <div class="sparkles">
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <p class="gift-hint">Click the box to open ✨</p>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery" id="gallery">
+      <div class="section-head">
+        <span class="label">Our Memories</span>
+        <h2>Moments Together</h2>
+        <p>Every photo keeps one unforgettable moment.</p>
+      </div>
+      <div class="gallery-grid">
+        <article class="card" data-id="0">
+          <img src="images/1.jpg" alt="First Meeting" loading="lazy" width="640" height="384">
+          <h3>First Meeting</h3>
+        </article>
+        <article class="card" data-id="1">
+          <img src="images/2.jpg" alt="Beautiful Days" loading="lazy" width="512" height="640">
+          <h3>Beautiful Days</h3>
+        </article>
+        <article class="card" data-id="2">
+          <img src="images/3.jpg" alt="Forever" loading="lazy" width="512" height="768">
+          <h3>Forever</h3>
+        </article>
+      </div>
+    </section>
+
+    <!-- VIEWER (lightbox) -->
+    <div id="viewer" class="viewer" hidden>
+      <div class="viewer-backdrop"></div>
+      <div class="viewer-panel">
+        <button id="closeViewer" class="close-btn" aria-label="Close">✕</button>
+        <img id="viewerImg" src="" alt="">
+        <h2 id="viewerTitle"></h2>
+        <p id="viewerText"></p>
+      </div>
+    </div>
+
+    <!-- LETTER -->
+    <section class="letter-sec" id="letter">
+      <div class="section-head">
+        <span class="label">A Little Letter</span>
+        <h2>A Letter For You ❤️</h2>
+        <p>There are some things that are easier to write than to say.</p>
+      </div>
+      <div class="envelope-wrap">
+        <div id="envelope" class="envelope">
+          <div class="env-back"></div>
+          <div class="paper">
+            <div class="letter-body">
+              <span class="to">To My Love</span>
+              <h3>Dear My Love,</h3>
+              <p>From the moment you came into my life, ordinary days somehow became a little more beautiful.</p>
+              <p>Thank you for every smile, every conversation, every little moment and every memory we have created together.</p>
+              <p>If I could choose one thing to keep forever, it would be the moments I get to spend with you.</p>
+              <div class="sign">
+                <span>With all my heart ❤️</span>
+                <strong>Forever Yours</strong>
+              </div>
+            </div>
+          </div>
+          <div class="env-front"></div>
+          <div class="flap"></div>
+          <div class="seal">💌</div>
+        </div>
+        <p class="env-hint">Click the envelope to open</p>
+      </div>
+    </section>
+
+    <!-- COUNTER -->
+    <section class="counter" id="counter">
+      <div class="section-head">
+        <span class="label">Time Together</span>
+        <h2>We've been together</h2>
+      </div>
+      <div class="timer" id="loveCounter">
+        <div class="unit"><span id="days">0</span><small>Days</small></div>
+        <div class="unit"><span id="hours">0</span><small>Hours</small></div>
+        <div class="unit"><span id="minutes">0</span><small>Minutes</small></div>
+        <div class="unit"><span id="seconds">0</span><small>Seconds</small></div>
+      </div>
+    </section>
+
+    <!-- ENDING / SURPRISE -->
+    <section class="ending" id="ending">
+      <div class="ending-inner">
+        <div class="big-heart">❤️</div>
+        <span class="label">Before You Go...</span>
+        <h2>Thank You</h2>
+        <p>Thank you for becoming one of the most beautiful chapters of my life.<br>And thank you for giving me so many memories worth keeping.</p>
+        <button id="surprise" class="btn primary">✨ Open Surprise</button>
+      </div>
+    </section>
+
+    <!-- FINAL -->
+    <section id="final" class="final" hidden>
+      <div class="final-bg">
+        <div class="orb o1"></div>
+        <div class="orb o2"></div>
+        <div class="orb o3"></div>
+      </div>
+      <div class="final-hearts" aria-hidden="true">
+        <span>❤️</span><span>💖</span><span>💕</span><span>✨</span>
+        <span>💗</span><span>🌸</span><span>❤️</span><span>✨</span>
+      </div>
+      <div class="final-content">
+        <div class="final-icon">💌</div>
+        <span class="label">One Last Question</span>
+        <h1>I Love You</h1>
+        <div class="divider"><span></span>❤️<span></span></div>
+        <p class="question">Will you continue making beautiful memories with me forever?</p>
+        <div class="final-btns">
+          <button id="yes" class="btn yes">❤️ Yes, Forever</button>
+          <button id="no" class="btn no">🙈 No</button>
+        </div>
+        <p class="note">Choose carefully... 👀</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
